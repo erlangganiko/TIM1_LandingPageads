@@ -20,7 +20,7 @@ body {
 
 header {
   background-color: #2d2d2d;
-  padding: 10px;
+  padding: 40px;
   position: relative;
 }
 /* Navbar */
@@ -38,7 +38,12 @@ header {
   z-index: 9999;
   transition: background-color 0.3s ease, border-bottom 0.3s ease;
 }
-
+.navbar h1 {
+  color: var(--milkyway);
+}
+.navbar h1 span {
+  color: var(--sky);
+}
 .logo {
   height: 50px;
   position: absolute;
