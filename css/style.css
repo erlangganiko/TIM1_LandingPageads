@@ -101,3 +101,9 @@ header {
     font-size: 3rem;
   }
 }
+/* reloadoverlay
+.reloadOverlay show {
+    opacity: 1;
+    pointer-events: all;
+  }
+ */
