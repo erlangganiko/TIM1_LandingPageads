@@ -6,23 +6,27 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 header {
   display: flex;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
-  padding: 25px 40px;
+  padding: 25px 80px;
   background-color: #000;
-  border-bottom: 5px solid #333;
 }
 
 .site-logo {
   display: flex;
   align-items: center;
   gap: 8px;
+  padding: 0 40px;
   font-weight: bold;
   font-size: 1.1em;
   color: #ccc;
+  margin: 0 4px;
 }
 
 .site-logo img {
@@ -31,11 +35,14 @@ header {
 }
 
 .promo-link {
+  padding: 0 40px;
   color: #fff;
   text-decoration: none;
   font-size: 0.9em;
 }
-
+main {
+  flex: 1;
+}
 .hero.container {
   display: flex;
   max-width: 100%;
@@ -68,6 +75,79 @@ header {
   height: 50vh;
   border-radius: 8px;
   object-fit: cover;
+}
+/* Footer */
+footer {
+  width: 100%;
+  background: linear-gradient(180deg, rgb(4, 4, 4) 30%, rgb(56, 56, 56) 95%);
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  align-items: flex-start;
+  gap: 3rem;
+  color: #ccc;
+}
+
+.footer {
+  width: 100%;
+  max-height: fit-content;
+  height: -moz-fit-content;
+}
+
+footer .social-media ul {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 2rem;
+}
+
+footer .social-media li {
+  list-style: none;
+}
+
+footer .social-media p {
+  text-align: center;
+  font-size: 1.25rem;
+}
+
+footer .social-media li a {
+  text-decoration: none;
+  font-size: 1.875rem;
+}
+
+.footer.social-media {
+  text-align: center;
+}
+
+.footer.social-media ul {
+  display: flex;
+  justify-content: center;
+  gap: 3.125rem;
+  padding: 0;
+  list-style: none;
+}
+
+.footer.social-media ul li {
+  display: inline-block;
+}
+
+.footer.address h3 {
+  font-size: 1.25rem;
+}
+
+.footer.address span {
+  font-size: 0.938rem;
+}
+
+.copyright {
+  width: 100%;
+  height: fit-content;
+  height: -moz-max-content;
+  padding: 1rem;
+}
+
+.copyright p {
+  text-align: center;
+  font-size: 1.25rem;
 }
 
 /* Media Query for Tablet (max-width: 768px) */
