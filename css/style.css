@@ -1,171 +1,87 @@
-:root {
-  --universe: #7096d1;
-  --venus: #bad6eb;
-  --sky: #d0e3ff;
-  --planetary: #334eac;
-  --galaxy: #081f5c;
-  --meteor: #f7f2eb;
-  --milkyway: #fff9f0;
-}
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
-  font-family: "Arial", sans-serif;
-  background-color: #f5f5f5;
+  font-family: "Georgia", serif;
+  background-color: #f9f1e7;
+  color: #3d2b1f;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
   margin: 0;
-  font-family: "Segoe UI", sans-serif;
-  background: #f4f9ff;
-  padding: 50px 0;
-  overflow-x: hidden;
 }
-
 header {
-  background-color: #2d2d2d;
-  padding: 40px;
-}
-/* Navbar */
-.navbar {
-  position: solid;
-}
-.navbar h1 {
-  color: var(--milkyway);
-}
-.navbar h1 span {
-  color: var(--sky);
-}
-.logo {
-  height: 50px;
-  position: absolute;
-  top: 80px;
-  right: 20px;
-}
-
-.landing {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 20px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 40px;
+  background-color: #000;
+  border-bottom: 5px solid #333;
 }
 
-.left,
-.right {
+.site-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+  font-size: 1.1em;
+  color: #ccc;
+}
+
+.site-logo img {
+  filter: invert(100%); /* Untuk logo Apple putih */
+  width: 40px;
+}
+
+.promo-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+
+.hero.container {
+  display: flex;
+  max-width: 100%;
+  padding: 20px;
+  gap: 40px;
+  align-items: center;
+}
+
+.text-content {
   flex: 1;
 }
 
-.left {
-  position: relative;
-  text-align: left;
+.text-content h1 {
+  font-size: 48px;
+  margin: 0 0 20px 0;
+  line-height: 1.2;
 }
 
-.left img {
+.text-content p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.video-content {
+  flex: 1;
+}
+
+.video-content video {
   width: 100%;
-  max-height: 400px;
+  height: 50vh;
+  border-radius: 8px;
   object-fit: cover;
 }
 
-.left h1 {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  color: white;
-  font-size: 2rem;
-  font-weight: bold;
-  max-width: 80%;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-}
-
-.right video {
-  width: 100%;
-  max-height: 400px;
-  border-radius: 10px;
-}
-
-.wa-sticky {
-  position: sticky;
-  top: 20px;
-  z-index: 1000;
-  margin-top: 20px;
-  width: 60px;
-  height: 60px;
-  right: 10px;
-}
-
-.wa-sticky img {
-  width: 100%;
-  height: auto;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.wa-sticky img:hover {
-  transform: scale(1.1);
-}
-
-/* Galeri */
-h2 {
-  text-align: center;
-  font-size: 32px;
-  color: #0074e4;
-  margin-bottom: 10px;
-}
-
-.slider-container {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-}
-
-.slider-track {
-  display: flex;
-  animation: slide 20s linear infinite;
-}
-
-.card {
-  min-width: 300px;
-  height: 300px;
-  background: white;
-  margin: 0 10px;
-  border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-  overflow: hidden;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-@keyframes slide {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-/* Responsive */
-@media (min-width: 768px) {
-  .landing {
-    flex-direction: row;
+/* Media Query for Tablet (max-width: 768px) */
+@media (max-width: 768px) {
+  .text-content h1 {
+    font-size: 32px;
   }
 
-  .left h1 {
-    font-size: 3rem;
+  .text-content p {
+    font-size: 16px;
+  }
+
+  .video-content video {
+    width: auto; /* full lebar container */
+    height: 40vh; /* tinggi otomatis mengikuti rasio asli video */
   }
 }
-/* reloadoverlay
-.reloadOverlay show {
-    opacity: 1;
-    pointer-events: all;
-  }
- */

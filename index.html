@@ -1,87 +1,42 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Moemtaz Group Landing Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Moemtaz</title>
     <link rel="stylesheet" href="css/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
   </head>
   <body>
     <header>
-      <nav class="navbar">
-        <img
-          src="assets/images/China's Smile.png"
-          alt="Moemtaz Logo"
-          class="logo"
-        />
-        <h1><span>Moemtaz</span> Group.</h1>
+      <div class="site-logo">
+        <img src="img/icon/Apple grey.png" />
+
+        <span>Moemtaz Logo</span>
+      </div>
+      <nav class="promo-nav">
+        <a href="#" class="promo-link" id="promoButton">Promo</a>
       </nav>
     </header>
-
-    <main class="landing">
-      <section class="left">
-        <img src="assets/images/Author Smile.png" alt="Produk Skincare" />
-        <h1>
-          Akhirnya kamu akan<br />
-          punya <strong>BRAND SKINCARE</strong> mu sendiri
-        </h1>
-      </section>
-      <section class="right">
-        <video controls poster="assets/images/" autoplay muted loop playsinline>
-          <source src="assets/video/tim1.1.mp4" type="video/mp4" />
-          Browser kamu tidak mendukung video.
-        </video>
-        <!-- WhatsApp Sticky Button -->
-        <div class="wa-sticky">
-          <a href="https://wa.me/628221202285" target="_blank">
-            <img src="assets/images/Author Smile.png" alt="WhatsApp" />
-          </a>
+    <main>
+      <div class="hero container">
+        <div class="text-content">
+          <h1>The Essence of Beauty</h1>
+          <p>
+            Discover our range of luxurious cosmetics and experience the true
+            essence of beauty. Our products are crafted to enhance your natural
+            radiance and elevate your beauty routine.
+          </p>
         </div>
-      </section>
-    </main>
-    <!-- Galeri Start-->
-    <h2>Galeri Klien</h2>
-    <div class="slider-container">
-      <div class="slider-track" id="slider">
-        <!-- Ulangi isi untuk efek loop -->
-        <div class="card">
-          <img src="assets/images/Author Smile.png" alt="Foto 1" />
-        </div>
-        <div class="card">
-          <img src="assets/images/China's Smile.png" alt="Foto 2" />
-        </div>
-        <div class="card">
-          <img src="assets/images/Author Smile.png" alt="Foto 3" />
-        </div>
-        <div class="card">
-          <img src="assets/images/China's Smile.png"Foto 4" />
-        </div>
-        <div class="card">
-          <img src="assets/images/Author Smile.png" alt="Foto 5" />
-        </div>
-        <!-- Duplikasi untuk loop -->
-        <div class="card">
-          <img src="assets/images/Author Smile.png" alt="Foto 1" />
-        </div>
-        <div class="card">
-          <img src="assets/images/China's Smile.png" alt="Foto 2" />
-        </div>
-        <div class="card">
-          <img src="assets/images/Author Smile.png" alt="Foto 3" />
-        </div>
-        <div class="card">
-          <img src="assets/images/China's Smile.png"Foto 4" />
-        </div>
-        <div class="card">
-          <img src="assets/images/Author Smile.png" alt="Foto 5" />
+        <div class="video-content">
+          <video
+            src="assets/video/contoh2.mp4"
+            autoplay
+            loop
+            muted
+            playsinline
+          ></video>
         </div>
       </div>
-    </div>
-    <!--Galeri End-->
-    <script src="script.js"></script>
+    </main>
   </body>
 </html>
