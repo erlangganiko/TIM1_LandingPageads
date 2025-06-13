@@ -146,7 +146,7 @@ header {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 0 40px;
+  padding: 0 20px;
   font-weight: bold;
   font-size: 1.1em;
   color: #ccc;
@@ -159,7 +159,7 @@ header {
 }
 
 .promo-link {
-  padding: 0 40px;
+  padding: 0 20px;
   color: #000;
   text-decoration: none;
   font-size: 0.9em;
@@ -553,12 +553,12 @@ footer {
 }
 
 .contact-info {
-  text-align: left;
+  text-align: center;
 }
 
 .contact-info h4 {
   color: var(--white);
-  text-align: left;
+  text-align: center;
   margin-bottom: 15px;
 }
 
@@ -628,6 +628,13 @@ footer {
 }
 
 @media (max-width: 768px) {
+  header .site-logo {
+    padding: 0 6px;
+  }
+  .promo-nav {
+    font-size: 12px;
+    padding: 3px 5px;
+  }
   .hero-section {
     padding: 30px 0;
   }
@@ -674,6 +681,10 @@ footer {
     border-right: 6px solid transparent;
     border-top: 6px solid var(--white);
     bottom: -6px;
+  }
+  .contact-info h4 {
+    width: 100%;
+    left: 40px;
   }
 }
 
