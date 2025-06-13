@@ -226,7 +226,7 @@ header {
   max-width: 600px;
   position: relative;
   padding-bottom: 30%;
-  height: 0;
+  height: 53vh;
   overflow: hidden;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
