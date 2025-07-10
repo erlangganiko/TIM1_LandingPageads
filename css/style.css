@@ -432,33 +432,116 @@ header {
 }
 
 /* Promo Skincare */
-.promo-skincare {
-  background-color: var(--secondary-color);
-  padding: 50px 0;
+.promo-section {
+  position: relative;
+  width: 100%;
+  height: 75vh; /* Sedikit lebih tinggi untuk memberi ruang */
+  min-height: 550px;
+  overflow: hidden;
+  color: white;
+}
+
+/* Latar Belakang Grid */
+.promo-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  z-index: 1;
+}
+
+.bg-img {
+  background-size: cover;
+  background-position: center;
+}
+
+/* Lapisan Gelap dan Konten Teks */
+.promo-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 2;
+
+  /* Perubahan utama di sini */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* DIUBAH dari space-between menjadi center */
+  padding: 25px;
+  box-sizing: border-box;
   text-align: center;
 }
-
-.promo-skincare h3 {
-  font-size: 2.2em;
-  margin-bottom: 40px;
-  color: var(--primary-color);
+/* Judul Promo yang baru */
+.promo-title {
+  font-family: "Oswald", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #ffffff;
+  background-color: #000;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin-bottom: 40px; /* DITAMBAHKAN: Memberi jarak ke info harga */
+}
+/* Info Harga tetap di tengah */
+.price-info {
+  margin-bottom: 40px; /* DITAMBAHKAN: Memberi jarak ke CTA */
 }
 
-.promo-images {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  justify-content: center;
+.original-price {
+  font-size: 2.5rem;
+  color: #ff5252;
+  margin: 0;
+  font-weight: 700;
+  line-height: 1;
 }
 
-.promo-images img {
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+.savings-text {
+  font-size: 1.2rem;
+  margin: 5px 0 10px 0;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #f1c40f;
 }
 
-.promo-images img:hover {
-  transform: translateY(-5px);
+/* Efek Shining pada Harga Akhir */
+.final-price {
+  font-family: "Oswald", sans-serif;
+  font-size: 6rem;
+  margin: 0;
+  color: #fff;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #f1c40f, 0 0 40px #f1c40f,
+    0 0 60px #f1c40f;
+  animation: shining-effect 2s ease-in-out infinite alternate;
+}
+
+@keyframes shining-effect {
+  from {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #f1c40f, 0 0 40px #f1c40f,
+      0 0 60px #f1c40f;
+  }
+  to {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #f1c40f,
+      0 0 50px #f1c40f, 0 0 75px #f1c40f;
+  }
+}
+
+/* Tombol Ajakan (CTA) */
+.promo-cta {
+  /* SEMUA properti position dan align-self DIHAPUS */
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 12px 20px;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 5px;
 }
 
 /* Testimonials Section */
@@ -869,8 +952,21 @@ footer {
   .value-prop h2 {
     font-size: 1.8em;
   }
-  .promo-skincare h3 {
-    font-size: 2em;
+  .final-price {
+    font-size: 4.5rem;
+  }
+  .original-price {
+    font-size: 2rem;
+  }
+  .savings-text {
+    font-size: 1rem;
+  }
+  .promo-banner {
+    font-size: 1.2rem;
+  }
+  .promo-background {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
   }
   .trust-badges .container {
     gap: 20px;
@@ -939,11 +1035,40 @@ footer {
   .value-prop h2 {
     font-size: 1.5em;
   }
-  .promo-skincare h3 {
-    font-size: 1.8em;
+  .promo-section {
+    height: 80vh;
   }
-  .promo-images {
-    grid-template-columns: 1fr;
+  .final-price {
+    font-size: 3.5rem;
+  }
+  .original-price {
+    font-size: 1.5rem;
+  }
+  .savings-text {
+    font-size: 0.9rem;
+  }
+  .promo-section {
+    height: 85vh;
+  }
+  .final-price {
+    font-size: 3.5rem;
+  }
+  .original-price {
+    font-size: 1.5rem;
+  }
+
+  /* Sesuaikan jarak untuk mobile */
+  .promo-title {
+    margin-bottom: 30px;
+  }
+  .price-info {
+    margin-bottom: 30px;
+  }
+
+  /* Pengaturan CTA sebelumnya bisa dihapus atau disederhanakan */
+  .promo-cta {
+    font-size: 0.9rem;
+    padding: 10px 15px;
   }
   .testimonials-section h2 {
     font-size: 1.8em;
