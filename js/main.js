@@ -1,300 +1,261 @@
-document.addEventListener("DOMContentLoaded", function () {
-  // 🔐 Nomor WA dalam base64
-  const encoded = "MDgxMjIwODY5NjAz"; // base64 encoding of 081220869603
-  const phone = atob(encoded); // decode to get the phone number
+document.addEventListener('DOMContentLoaded', function() {
+    // 🔐 Nomor WA dalam base64
+    const encoded = "MDgxMjIwODY5NjAz"; // base64 encoding of 081220869603
+    const phone = atob(encoded);
 
-  const prefilledMessages = [
-    "Bagaimana prosesnya?",
-    "Ada yang bisa dibantu?",
-    "Silakan chat kami!",
-    "Dapatkan penawaran terbaik!",
-  ];
-  let currentMessageIndex = 0;
+    // --- Fungsionalitas Tombol WhatsApp ---
+    const prefilledMessages = [
+        "Bagaimana prosesnya?",
+        "Ada yang bisa dibantu?",
+        "Silakan chat kami!",
+        "Dapatkan penawaran terbaik!"
+    ];
+    let currentMessageIndex = 0;
 
-  function updateChatBubbleText(whatsappChatBubbleElement) {
-    if (whatsappChatBubbleElement) {
-      whatsappChatBubbleElement.textContent =
-        prefilledMessages[currentMessageIndex];
+    const whatsappChatBubble = document.getElementById("whatsappChatBubble");
+    const whatsappCallIcon = document.getElementById("whatsappCallIcon");
+    const whatsappLinkFooter = document.getElementById("whatsappLinkFooter");
 
-      currentMessageIndex =
-        (currentMessageIndex + 1) % prefilledMessages.length;
+    function updateChatBubbleText() {
+        if (whatsappChatBubble) {
+            whatsappChatBubble.textContent = prefilledMessages[currentMessageIndex];
+            currentMessageIndex = (currentMessageIndex + 1) % prefilledMessages.length;
+        }
     }
-  }
 
-  // Get the chat bubble and the main WhatsApp floating icon
-  const whatsappChatBubble = document.getElementById("whatsappChatBubble");
-  const whatsappCallIcon = document.getElementById("whatsappCallIcon");
-
-  // Perbarui teks gelembung setiap beberapa detik (misal: 5 detik)
-  if (whatsappChatBubble) {
-    updateChatBubbleText(whatsappChatBubble);
-    setInterval(() => updateChatBubbleText(whatsappChatBubble), 5000);
-  }
-
-  if (whatsappChatBubble) {
-    whatsappChatBubble.addEventListener("click", function () {
-      const messageToSend = whatsappChatBubble.textContent;
-      window.open(
-        `https://wa.me/${phone}?text=${encodeURIComponent(messageToSend)}`,
-        "_blank"
-      );
-    });
-  }
-
-  if (whatsappCallIcon) {
-    whatsappCallIcon.addEventListener("click", function (event) {
-      event.preventDefault();
-      const messageToSend = whatsappChatBubble
-        ? whatsappChatBubble.textContent
-        : prefilledMessages[0];
-      window.open(
-        `https://wa.me/${phone}?text=${encodeURIComponent(messageToSend)}`,
-        "_blank"
-      );
-    });
-  }
-
-  // Fungsionalitas tombol WhatsApp di footer
-  const whatsappLinkFooter = document.getElementById("whatsappLinkFooter");
-  if (whatsappLinkFooter) {
-    whatsappLinkFooter.addEventListener("click", function (event) {
-      event.preventDefault();
-      const messageToSend = whatsappChatBubble
-        ? whatsappChatBubble.textContent
-        : prefilledMessages[0];
-      window.open(
-        `https://wa.me/${phone}?text=${encodeURIComponent(messageToSend)}`,
-        "_blank"
-      );
-    });
-  }
-
-  // 1. Autoplay Video
-  const labVideo = document.getElementById("labVideo");
-  if (labVideo) {
-    labVideo.muted = true;
-    labVideo.play().catch((error) => {
-      console.log(
-        "Video autoplay failed (likely due to browser policy). User interaction might be required.",
-        error
-      );
-    });
-  }
-
-  // 2. Testimonial Slider
-  const testimonials = document.querySelectorAll(".testimonial-item");
-  const prevBtn = document.querySelector(".prev-slide");
-  const nextBtn = document.querySelector(".next-slide");
-  const paginationDotsContainer = document.querySelector(".pagination-dots");
-  let currentTestimonialIndex = 0;
-  let slideInterval;
-
-  function showTestimonial(index) {
-    testimonials.forEach((item, i) => {
-      item.classList.remove("active");
-      if (i === index) {
-        item.classList.add("active");
-      }
-    });
-    updatePaginationDots(index);
-  }
-
-  function nextTestimonial() {
-    currentTestimonialIndex =
-      (currentTestimonialIndex + 1) % testimonials.length;
-    showTestimonial(currentTestimonialIndex);
-  }
-
-  function prevTestimonial() {
-    currentTestimonialIndex =
-      (currentTestimonialIndex - 1 + testimonials.length) % testimonials.length;
-    showTestimonial(currentTestimonialIndex);
-  }
-
-  function startAutoSlide() {
-    clearInterval(slideInterval);
-    slideInterval = setInterval(nextTestimonial, 5000);
-  }
-
-  function createPaginationDots() {
-    testimonials.forEach((_, i) => {
-      const dot = document.createElement("span");
-      dot.classList.add("pagination-dot");
-      dot.dataset.index = i;
-      dot.addEventListener("click", () => {
-        showTestimonial(i);
-        clearInterval(slideInterval);
-        startAutoSlide();
-      });
-      paginationDotsContainer.appendChild(dot);
-    });
-  }
-
-  function updatePaginationDots(activeIndex) {
-    document.querySelectorAll(".pagination-dot").forEach((dot, i) => {
-      dot.classList.remove("active");
-      if (i === activeIndex) {
-        dot.classList.add("active");
-      }
-    });
-  }
-
-  if (testimonials.length > 0) {
-    createPaginationDots();
-    showTestimonial(currentTestimonialIndex);
-    startAutoSlide();
-
-    nextBtn.addEventListener("click", () => {
-      nextTestimonial();
-      clearInterval(slideInterval);
-      startAutoSlide();
-    });
-
-    prevBtn.addEventListener("click", () => {
-      prevTestimonial();
-      clearInterval(slideInterval);
-      startAutoSlide();
-    });
-
-    const testimonialsSection = document.querySelector(".testimonials-section");
-    testimonialsSection.addEventListener("mouseenter", () =>
-      clearInterval(slideInterval)
-    );
-    testimonialsSection.addEventListener("mouseleave", startAutoSlide);
-  }
-
-  // 3. FAQ Accordion (unchanged from previous version)
-  const faqQuestions = document.querySelectorAll(".faq-question");
-
-  faqQuestions.forEach((question) => {
-    question.addEventListener("click", () => {
-      const answer = question.nextElementSibling;
-
-      question.classList.toggle("active");
-
-      if (answer.classList.contains("open")) {
-        answer.classList.remove("open");
-        answer.style.maxHeight = null;
-      } else {
-        document.querySelectorAll(".faq-answer.open").forEach((openAnswer) => {
-          openAnswer.classList.remove("open");
-          openAnswer.style.maxHeight = null;
-          openAnswer.previousElementSibling.classList.remove("active");
+    if (whatsappChatBubble) {
+        updateChatBubbleText();
+        setInterval(updateChatBubbleText, 5000);
+        whatsappChatBubble.addEventListener("click", function() {
+            const messageToSend = whatsappChatBubble.textContent;
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(messageToSend)}`, '_blank');
         });
-
-        answer.classList.add("open");
-        answer.style.maxHeight = answer.scrollHeight + "px";
-      }
-    });
-  });
-
-  // 4. Smooth Scrolling for internal links
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault();
-
-      document.querySelector(this.getAttribute("href")).scrollIntoView({
-        behavior: "smooth",
-      });
-    });
-  });
-
-  // 5. Promo Pop-up Functionality
-  const promoButton = document.getElementById("promoButton");
-  const promoPopup = document.getElementById("promoPopup");
-  const closePromoPopup = document.getElementById("closePromoPopup");
-  const countdownTimerElement = document.getElementById("countdownTimer");
-  const daysSpan = document.getElementById("days");
-  const hoursSpan = document.getElementById("hours");
-  const minutesSpan = document.getElementById("minutes");
-  const secondsSpan = document.getElementById("seconds");
-  const promoCallToAction = document.getElementById("promoCallToAction");
-
-  // Set the end date for the promo
-  // Set the end date for your promotion to be 2 hours and 30 minutes from now
-  const now = new Date();
-  const promoEndDate = new Date(
-    now.getTime() + 0 * 60 * 60 * 1000 + 1 * 60 * 1000
-  ).getTime(); // 2 hours + 30 minutes
-  //const promoEndDate = new Date('June 30, 2025 23:59:59').getTime(); // diatur menggunakan tanggal terakhir diskon
-  let countdownInterval;
-
-  function updateCountdown() {
-    const now = new Date().getTime();
-    const distance = promoEndDate - now;
-
-    if (distance < 0) {
-      clearInterval(countdownInterval);
-      countdownTimerElement.innerHTML = "PROMO TELAH BERAKHIR!";
-      promoCallToAction.style.display = "none";
-      return;
     }
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor(
-      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    );
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    if (whatsappCallIcon) {
+        whatsappCallIcon.addEventListener("click", function(event) {
+            event.preventDefault();
+            const messageToSend = whatsappChatBubble ? whatsappChatBubble.textContent : prefilledMessages[0];
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(messageToSend)}`, '_blank');
+        });
+    }
 
-    daysSpan.textContent = String(days).padStart(2, "0");
-    hoursSpan.textContent = String(hours).padStart(2, "0");
-    minutesSpan.textContent = String(minutes).padStart(2, "0");
-    secondsSpan.textContent = String(seconds).padStart(2, "0");
-  }
+    if (whatsappLinkFooter) {
+        whatsappLinkFooter.addEventListener("click", function(event) {
+            event.preventDefault();
+            const messageToSend = whatsappChatBubble ? whatsappChatBubble.textContent : prefilledMessages[0];
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(messageToSend)}`, '_blank');
+        });
+    }
 
-  function showPromoPopup() {
-    promoPopup.classList.add("show");
-    updateCountdown();
-    countdownInterval = setInterval(updateCountdown, 1000);
-  }
+    // --- 1. Autoplay Video ---
+    const labVideo = document.getElementById('labVideo');
+    if (labVideo) {
+        labVideo.muted = true;
+        labVideo.play().catch(error => {
+            console.log("Video autoplay failed.", error);
+        });
+    }
 
-  function hidePromoPopup() {
-    promoPopup.classList.remove("show");
-    clearInterval(countdownInterval);
-  }
+    // --- 2. Testimonial Slider (Manual) ---
+    const testimonials = document.querySelectorAll('.testimonial-item');
+    if (testimonials.length > 0) {
+        const prevBtn = document.querySelector('.prev-slide');
+        const nextBtn = document.querySelector('.next-slide');
+        const paginationDotsContainer = document.querySelector('.pagination-dots');
+        let currentTestimonialIndex = 0;
 
-  if (promoButton) {
-    promoButton.addEventListener("click", function (e) {
-      e.preventDefault();
-      showPromoPopup();
+        function showTestimonial(index) {
+            testimonials.forEach((item, i) => {
+                item.classList.remove('active');
+                if (i === index) {
+                    item.classList.add('active');
+                }
+            });
+            updatePaginationDots(index);
+        }
+
+        function nextTestimonial() {
+            currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonials.length;
+            showTestimonial(currentTestimonialIndex);
+        }
+
+        function prevTestimonial() {
+            currentTestimonialIndex = (currentTestimonialIndex - 1 + testimonials.length) % testimonials.length;
+            showTestimonial(currentTestimonialIndex);
+        }
+
+        function createPaginationDots() {
+            testimonials.forEach((_, i) => {
+                const dot = document.createElement('span');
+                dot.classList.add('pagination-dot');
+                dot.dataset.index = i;
+                dot.addEventListener('click', () => showTestimonial(i));
+                paginationDotsContainer.appendChild(dot);
+            });
+        }
+
+        function updatePaginationDots(activeIndex) {
+            document.querySelectorAll('.pagination-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === activeIndex);
+            });
+        }
+
+        createPaginationDots();
+        showTestimonial(currentTestimonialIndex);
+        nextBtn.addEventListener('click', nextTestimonial);
+        prevBtn.addEventListener('click', prevTestimonial);
+    }
+
+    // --- 3. FAQ Accordion ---
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+            const answer = question.nextElementSibling;
+            const wasOpen = answer.classList.contains('open');
+
+            // Tutup semua jawaban
+            document.querySelectorAll('.faq-answer.open').forEach(openAnswer => {
+                openAnswer.classList.remove('open');
+                openAnswer.style.maxHeight = null;
+                openAnswer.previousElementSibling.classList.remove('active');
+            });
+
+            // Jika item yang diklik belum terbuka, buka
+            if (!wasOpen) {
+                question.classList.add('active');
+                answer.classList.add('open');
+                answer.style.maxHeight = answer.scrollHeight + "px";
+            }
+        });
     });
-  }
 
-  if (closePromoPopup) {
-    closePromoPopup.addEventListener("click", hidePromoPopup);
-  }
-
-  if (promoPopup) {
-    promoPopup.addEventListener("click", function (e) {
-      if (e.target === promoPopup) {
-        hidePromoPopup();
-      }
+    // --- 4. Smooth Scrolling ---
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetElement = document.querySelector(this.getAttribute('href'));
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
     });
-  }
 
-  if (promoCallToAction) {
-    promoCallToAction.addEventListener("click", function (event) {
-      event.preventDefault();
-      const promoMessage =
-        "Halo Moemtaz Group, saya tertarik dengan promo skincare yang sedang berlangsung!";
-      window.open(
-        `https://wa.me/${phone}?text=${encodeURIComponent(promoMessage)}`,
-        "_blank"
-      );
-      hidePromoPopup();
-    });
-  }
-});
-document.addEventListener("DOMContentLoaded", function () {
-  // Untuk saat ini, semua efek utama (sticky banner dan animasi teks)
-  // ditangani oleh CSS untuk performa yang lebih baik.
+    // --- 5. Promo Pop-up Functionality ---
+    const promoButton = document.getElementById('promoButton');
+    const promoPopup = document.getElementById('promoPopup');
+    const closePromoPopup = document.getElementById('closePromoPopup');
+    const countdownTimerElement = document.getElementById('countdownTimer');
+    const daysSpan = document.getElementById('days');
+    const hoursSpan = document.getElementById('hours');
+    const minutesSpan = document.getElementById('minutes');
+    const secondsSpan = document.getElementById('seconds');
+    const promoCallToAction = document.getElementById('promoCallToAction');
 
-  // File ini siap digunakan jika Anda ingin menambahkan interaktivitas,
-  // seperti:
-  // 1. Efek paralaks pada gambar latar belakang saat scroll.
-  // 2. Mengubah sesuatu saat tombol CTA diklik.
-  // 3. Animasi yang lebih kompleks yang tidak bisa dilakukan dengan CSS.
+    if (promoPopup) {
+        const now = new Date();
+        const promoEndDate = new Date(now.getTime() + (2 * 60 * 60 * 1000) + (30 * 60 * 1000)).getTime(); // 2 jam 30 menit dari sekarang
+        let countdownInterval;
 
-  console.log("Section promo berhasil dimuat!");
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = promoEndDate - now;
+
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                if (countdownTimerElement) countdownTimerElement.innerHTML = "PROMO TELAH BERAKHIR!";
+                if (promoCallToAction) promoCallToAction.style.display = 'none';
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            if (daysSpan) daysSpan.textContent = String(days).padStart(2, '0');
+            if (hoursSpan) hoursSpan.textContent = String(hours).padStart(2, '0');
+            if (minutesSpan) minutesSpan.textContent = String(minutes).padStart(2, '0');
+            if (secondsSpan) secondsSpan.textContent = String(seconds).padStart(2, '0');
+        }
+
+        function showPromoPopup() {
+            promoPopup.classList.add('show');
+            updateCountdown();
+            countdownInterval = setInterval(updateCountdown, 1000);
+        }
+
+        function hidePromoPopup() {
+            promoPopup.classList.remove('show');
+            clearInterval(countdownInterval);
+        }
+
+        if (promoButton) promoButton.addEventListener('click', showPromoPopup);
+        if (closePromoPopup) closePromoPopup.addEventListener('click', hidePromoPopup);
+        promoPopup.addEventListener('click', e => { if (e.target === promoPopup) hidePromoPopup(); });
+
+        if (promoCallToAction) {
+            promoCallToAction.addEventListener('click', function(event) {
+                event.preventDefault();
+                const promoMessage = "Halo Moemtaz Group, saya tertarik dengan promo skincare yang sedang berlangsung!";
+                window.open(`https://wa.me/${phone}?text=${encodeURIComponent(promoMessage)}`, '_blank');
+                hidePromoPopup();
+            });
+        }
+    }
+
+    // --- 6. Animasi Cerita Moemtaz ---
+    const storyHeadingElement = document.getElementById('story-heading');
+    const storyContentElement = document.getElementById('story-content');
+
+    if (storyHeadingElement && storyContentElement) {
+        const headingText = "Cerita Moemtaz itu berawal dari...";
+        const stories = [
+            { year: "2017", text: "Moemtaz Group berdiri dengan fokus pada industri manufaktur dan layanan pengembangan bisnis." },
+            { year: "2019", text: "Moemtaz Group mengembangkan bisnisnya sebagai trading company." },
+            { year: "2023", text: "Moemtaz Group memutuskan untuk terlibat dengan program green sustainability, yang di mana juga berfokus pada manufaktur skincare dan obat-obatan, IT development, Agrobisnis dan ekspor-impor." }
+        ];
+
+        let i = 0;
+        storyHeadingElement.innerHTML = "";
+
+        function typeWriter() {
+    if (i < headingText.length) {
+        storyHeadingElement.innerHTML += headingText.charAt(i);
+        i++;
+        setTimeout(typeWriter, 90);
+    } else {
+        // Animasi selesai. Lakukan pembersihan:
+        
+        // 1. Hapus animasi agar tidak berjalan lagi
+        storyHeadingElement.style.animation = 'none';
+        
+        // 2. Izinkan teks untuk wrap (pindah baris) secara alami
+        storyHeadingElement.style.whiteSpace = 'normal';
+        
+        // 3. Hapus sisa border kanan (kursor)
+        storyHeadingElement.style.borderRight = 'none';
+        
+        // 4. Atur ulang lebar agar sesuai dengan container
+        storyHeadingElement.style.width = 'auto';
+
+        // Mulai menampilkan cerita tahunan
+        revealStories();
+    }
+}
+
+        function revealStories() {
+            stories.forEach((story, index) => {
+                setTimeout(() => {
+                    const yearElement = document.createElement('div');
+                    yearElement.className = 'story-year';
+                    yearElement.innerHTML = `<h4>${story.year}</h4><p>${story.text}</p>`;
+                    storyContentElement.appendChild(yearElement);
+                    setTimeout(() => yearElement.classList.add('visible'), 100);
+                }, index * 800);
+            });
+        }
+
+        typeWriter();
+    }
 });
