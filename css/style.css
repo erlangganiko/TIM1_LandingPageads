@@ -332,15 +332,17 @@ header {
 
 .hero-content {
   display: flex;
-  flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
-  align-items: center;
+  align-items: stretch; /* Ensures both items have the same height */
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .product-info {
-  flex: 1;
-  min-width: 300px;
+  flex: 1; /* Allows this item to grow and shrink equally */
+  min-width: 300px; /* This will prevent it from getting too small and might cause overflow if not enough space */
   position: relative;
   overflow: hidden;
   border-radius: 8px;
@@ -349,7 +351,8 @@ header {
 
 .product-image {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   display: block;
 }
 
@@ -368,12 +371,10 @@ header {
 }
 
 .video-container {
-  flex: 1;
-  min-width: 400px;
-  max-width: 600px;
+  flex: 1; /* Allows this item to grow and shrink equally */
+  min-width: 300px; /* Add a min-width here too, to match .product-info's behavior */
   position: relative;
-  padding-bottom: 30%;
-  height: 53vh;
+  height: 53vh; /* Base height for both elements */
   overflow: hidden;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -388,6 +389,44 @@ header {
   object-fit: cover;
 }
 
+/* --- Media Queries for enhanced responsiveness
+@media (max-width: 768px) {
+  .hero-content {
+    align-items: center; Centers stacked items 
+  }
+
+  .product-info,
+  .video-container {
+    width: 90%; /* Take up most of the width when stacked 
+    max-width: 500px; 
+    min-width: unset; 
+  }
+
+  .video-container {
+    height: 40vh; /* Adjust video height when stacked 
+  }
+
+  .copywriting-overlay {
+    font-size: 1.5rem; /* Further adjust font size 
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    padding: 30px 0;
+    min-height: 350px;
+  }
+
+  .video-container {
+    height: 30vh; /* Further adjust video height for very small screens 
+  }
+
+  .copywriting-overlay {
+    font-size: 1.2rem;
+    top: 5%; /* Adjust position if needed 
+  }
+}
+ 
 /* ================================================
    05. Siap Memulai (CTA) Section
    ================================================ */
@@ -536,23 +575,22 @@ header {
   font-family: "Oswald", sans-serif;
   font-size: 6rem;
   margin: 0;
-  color: #fff;
-  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #f1c40f, 0 0 40px #f1c40f,
-    0 0 60px #f1c40f;
+  color: #eee043;
+  text-shadow: 0 0 5px #000000, 0 0 10px #000000, 0 0 20px #f1c40f,
+    0 0 40px #f1c40f, 0 0 60px #e1b505;
   animation: shining-effect 2s ease-in-out infinite alternate;
 }
 
 @keyframes shining-effect {
   from {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #f1c40f, 0 0 40px #f1c40f,
-      0 0 60px #f1c40f;
+    text-shadow: 0 0 5px #050505, 0 0 10px #010101, 0 0 20px #f1c40f,
+      0 0 40px #f1c40f, 0 0 60px #f1c40f;
   }
   to {
     text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #f1c40f,
       0 0 50px #f1c40f, 0 0 75px #f1c40f;
   }
 }
-
 .promo-cta {
   background-color: rgba(0, 0, 0, 0.8);
   padding: 12px 20px;
@@ -815,14 +853,16 @@ header {
 }
 
 .faq-question::after {
-  content: "+";
-  font-size: 1.2em;
+  content: "❯"; /* This is a right-pointing angle bracket, commonly used as an arrow */
+  font-size: 1em; /* Adjust size as needed, 1em works well with current font-size */
+  margin-left: 10px; /* Add some space between text and arrow */
   transition: transform 0.3s ease;
+  display: inline-block; /* Essential for transform to work correctly */
+   transform: rotate(90deg); /* Rotates the arrow to point down or up when active */
 }
 
 .faq-question.active::after {
-  content: "-";
-  transform: rotate(180deg);
+  transform: rotate(90deg); /* Rotates the arrow to point down or up when active */
 }
 
 .faq-answer {
@@ -914,7 +954,10 @@ footer {
     width: 100%;
   }
   .video-container {
-    padding-bottom: 56.25%;
+    padding-bottom: 56.25%; 
+  }
+  .copywriting-overlay {
+    font-size: 1.8rem; /* Adjust font size for smaller screens */
   }
   .about-faq-grid {
     grid-template-columns: 1fr;
