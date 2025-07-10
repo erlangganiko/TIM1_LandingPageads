@@ -643,6 +643,29 @@ header {
   background-color: var(--primary-color);
 }
 
+/* Menargetkan HANYA section dengan class .testimonials-section */
+.testimonials-section {
+  /* Ganti 'url-gambar-anda.jpg' dengan path ke gambar yang Anda inginkan */
+  /* Anda bisa menggunakan gambar kertas robek yang kita bahas sebelumnya */
+  background-image: url("../assets/img/bg-paper2.webp");
+
+  /* Properti tambahan untuk memastikan background terlihat bagus */
+  background-size: cover; /* Membuat gambar menutupi seluruh area section */
+  background-position: center; /* Memosisikan gambar di tengah */
+  background-repeat: no-repeat; /* Mencegah gambar berulang jika ukurannya kecil */
+
+  /* Pastikan teks tetap terbaca di atas background */
+  padding: 250px 0; /* Memberi jarak di dalam section */
+}
+
+/* Gaya untuk item testimoni agar memiliki latar belakang transparan */
+.testimonial-item {
+  background-color: rgba(0, 0, 0, 0.4); /* Latar belakang hitam transparan */
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
 /* About & FAQ Section  */
 .about-faq-section {
   background-color: var(--secondary-color);
