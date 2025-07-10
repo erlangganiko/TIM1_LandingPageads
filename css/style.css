@@ -1,9 +1,30 @@
+/* ================================================
+   TABLE OF CONTENTS
+   ================================================
+   00. Global Styles & Variables
+   01. Promo Pop-up (Modal)
+   02. Floating WhatsApp Button
+   03. Header
+   04. Hero Section
+   05. Siap Memulai (CTA) Section
+   06. Trust Badges Section
+   07. Promo Skincare Section
+   08. Testimonials Section
+   09. About & FAQ Section
+   10. Footer
+   11. Responsive Media Queries
+   ================================================ */
+
+/* ================================================
+   00. Global Styles & Variables
+   ================================================ */
 :root {
   --primary-color: #5a3e87;
   --secondary-color: #f0f0f0;
+  --testimonialglow-color: #fffefe;
   --text-color: #333;
   --white: #fff;
-  --dark-gray: #555;
+  --dark-gray: #555; /* FIX: Was #ffffff, changed to a dark gray */
   --light-purple: #c4b6e0;
   --whatsapp-green: #25d366;
 }
@@ -52,9 +73,10 @@ h4 {
   color: var(--primary-color);
   text-align: center;
 }
-/*promo button */
 
-/* Promo Pop-up Styles */
+/* ================================================
+   01. Promo Pop-up (Modal)
+   ================================================ */
 .promo-popup-overlay {
   position: fixed;
   top: 0;
@@ -65,7 +87,7 @@ h4 {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1001; /* Higher than whatsapp-wrapper */
+  z-index: 1001;
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s, opacity 0.3s ease;
@@ -168,47 +190,9 @@ h4 {
   transform: translateY(-2px);
 }
 
-/* Media Queries for Pop-up */
-@media (max-width: 768px) {
-  .promo-popup-content {
-    padding: 30px;
-  }
-  .promo-popup-content h2 {
-    font-size: 1.8em;
-  }
-  .time-segment {
-    font-size: 1.5em;
-    padding: 8px 12px;
-    min-width: 60px;
-  }
-  .promo-call-to-action {
-    padding: 12px 25px;
-    font-size: 1em;
-  }
-}
-
-@media (max-width: 480px) {
-  .promo-popup-content {
-    padding: 20px;
-  }
-  .promo-popup-content h2 {
-    font-size: 1.5em;
-  }
-  .countdown-timer {
-    gap: 10px;
-  }
-  .time-segment {
-    font-size: 1.2em;
-    padding: 6px 10px;
-    min-width: 50px;
-  }
-  .promo-call-to-action {
-    padding: 10px 20px;
-    font-size: 0.9em;
-  }
-}
-
-/* WhatsApp Wrapper for chat bubble positioning */
+/* ================================================
+   02. Floating WhatsApp Button
+   ================================================ */
 .whatsapp-wrapper {
   position: fixed;
   bottom: 20px;
@@ -220,8 +204,8 @@ h4 {
   gap: 10px;
 }
 
-/* Chat Bubble Styling  */
-.chat-bubble {
+/* Styling specifically for the WA chat bubble */
+.whatsapp-wrapper .chat-bubble {
   background-color: var(--white);
   color: var(--text-color);
   padding: 8px 15px;
@@ -234,11 +218,10 @@ h4 {
   transform: translateY(10px);
   animation: fadeInBubble 0.5s ease-out forwards;
   animation-delay: 0.5s;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Added stronger shadow for depth */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Speech bubble "tail"  */
-.chat-bubble::after {
+.whatsapp-wrapper .chat-bubble::after {
   content: "";
   position: absolute;
   bottom: -8px;
@@ -247,7 +230,7 @@ h4 {
   height: 0;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-  border-top: 8px solid var(--white); /* White tail to match bubble background */
+  border-top: 8px solid var(--white);
 }
 
 @keyframes fadeInBubble {
@@ -257,7 +240,6 @@ h4 {
   }
 }
 
-/* Floating WhatsApp Button  */
 .whatsapp-float {
   background-color: var(--whatsapp-green);
   color: var(--white);
@@ -269,7 +251,7 @@ h4 {
   align-items: center;
   font-size: 28px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  animation: pulse 1.5s infinite; /* Zoom in/zoom out animation */
+  animation: pulse 1.5s infinite;
 }
 
 .whatsapp-float:hover {
@@ -277,17 +259,14 @@ h4 {
 }
 
 @keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
-/* Header */
+
+/* ================================================
+   03. Header
+   ================================================ */
 header {
   display: flex;
   width: 100%;
@@ -309,16 +288,10 @@ header {
 }
 
 .site-logo img {
-  filter: invert(100%); /* Untuk logo Apple putih */
+  filter: invert(100%);
   width: 40px;
 }
 
-.promo-link {
-  padding: 0 20px;
-  color: #000;
-  text-decoration: none;
-  font-size: 0.9em;
-}
 .promo-nav {
   background-color: white;
   padding: 8px 8px;
@@ -327,11 +300,22 @@ header {
   font-size: 18px;
   cursor: pointer;
 }
+
 .promo-nav:hover {
   transform: scale(1.1);
   color: #ccc;
 }
-/* Hero Section  */
+
+.promo-link {
+  padding: 0 20px;
+  color: #000;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+
+/* ================================================
+   04. Hero Section
+   ================================================ */
 .hero-section {
   background-color: var(--secondary-color);
   padding: 50px 0;
@@ -372,9 +356,11 @@ header {
   font-weight: bold;
   text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
 }
+
 .copywriting-overlay span {
   color: var(--primary-color);
 }
+
 .video-container {
   flex: 1;
   min-width: 400px;
@@ -396,10 +382,57 @@ header {
   object-fit: cover;
 }
 
-/* Trust Badges  */
+/* ================================================
+   05. Siap Memulai (CTA) Section
+   ================================================ */
+.siap-memulai-section {
+  padding: 60px 20px;
+  background-color: #f8f9fa;
+  text-align: center; /* Kunci utama: Membuat semua konten terpusat */
+}
+
+.siap-memulai-section h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+  color: #333;
+}
+
+.siap-memulai-section p {
+  font-size: 1.1rem;
+  color: #444;
+  margin-top: 15px;
+  font-weight: 500;
+}
+
+.trust-badges {
+  background-color: #f8f9fa; /* Samakan background agar menyatu */
+  padding: 40px 0;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.trust-badges .container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.trust-logo {
+  max-width: 120px;
+  height: auto;
+  filter: grayscale(20%); /* Sedikit efek grayscale agar lebih elegan */
+}
+
+
+/* ================================================
+   06. Trust Badges Section
+   ================================================ */
 .trust-badges {
   background-color: var(--white);
-  padding: 30px 0;
+  padding: 40px 0;
   text-align: center;
   border-bottom: 1px solid #eee;
 }
@@ -416,32 +449,18 @@ header {
   height: auto;
 }
 
-/* Value Proposition  */
-.value-prop {
-  background-color: var(--white);
-  padding: 50px 20px;
-  text-align: center;
-  border-bottom: 1px solid #eee;
-}
-
-.value-prop h2 {
-  font-size: 2em;
-  color: var(--dark-gray);
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-/* Promo Skincare */
+/* ================================================
+   07. Promo Skincare Section
+   ================================================ */
 .promo-section {
   position: relative;
   width: 100%;
-  height: 75vh; /* Sedikit lebih tinggi untuk memberi ruang */
+  height: 75vh;
   min-height: 550px;
   overflow: hidden;
   color: white;
 }
 
-/* Latar Belakang Grid */
 .promo-background {
   position: absolute;
   top: 0;
@@ -459,7 +478,6 @@ header {
   background-position: center;
 }
 
-/* Lapisan Gelap dan Konten Teks */
 .promo-overlay {
   position: absolute;
   top: 0;
@@ -468,17 +486,15 @@ header {
   height: 100%;
   background: rgba(0, 0, 0, 0.2);
   z-index: 2;
-
-  /* Perubahan utama di sini */
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* DIUBAH dari space-between menjadi center */
+  justify-content: center;
   padding: 25px;
   box-sizing: border-box;
   text-align: center;
 }
-/* Judul Promo yang baru */
+
 .promo-title {
   font-family: "Oswald", sans-serif;
   font-size: 1.6rem;
@@ -488,11 +504,11 @@ header {
   background-color: #000;
   padding: 10px 15px;
   border-radius: 5px;
-  margin-bottom: 40px; /* DITAMBAHKAN: Memberi jarak ke info harga */
+  margin-bottom: 40px;
 }
-/* Info Harga tetap di tengah */
+
 .price-info {
-  margin-bottom: 40px; /* DITAMBAHKAN: Memberi jarak ke CTA */
+  margin-bottom: 40px;
 }
 
 .original-price {
@@ -511,7 +527,6 @@ header {
   color: #f1c40f;
 }
 
-/* Efek Shining pada Harga Akhir */
 .final-price {
   font-family: "Oswald", sans-serif;
   font-size: 6rem;
@@ -533,9 +548,7 @@ header {
   }
 }
 
-/* Tombol Ajakan (CTA) */
 .promo-cta {
-  /* SEMUA properti position dan align-self DIHAPUS */
   background-color: rgba(0, 0, 0, 0.8);
   padding: 12px 20px;
   font-weight: 700;
@@ -544,10 +557,16 @@ header {
   border-radius: 5px;
 }
 
-/* Testimonials Section */
+
+/* ================================================
+   08. Testimonials Section
+   ================================================ */
 .testimonials-section {
-  padding: 60px 0;
-  background-color: var(--white);
+  background-image: url("../assets/img/bg-paper2.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 250px 0;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -560,14 +579,13 @@ header {
   display: inline-block;
 }
 
-/* Shining Text Animation  */
 .shining-text {
   background: linear-gradient(
     90deg,
     var(--primary-color) 0%,
     var(--light-purple) 20%,
-    var(--primary-color) 40%,
-    var(--primary-color) 100%
+    var(--testimonialglow-color) 40%,
+    var(--testimonialglow-color) 100%
   );
   background-size: 200% 100%;
   -webkit-background-clip: text;
@@ -577,12 +595,8 @@ header {
 }
 
 @keyframes shine {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
 
 .testimonials-slider {
@@ -590,61 +604,18 @@ header {
   overflow: hidden;
   position: relative;
   width: 100%;
-  margin-bottom: 30px;
+  margin: 0 auto 30px auto;
   min-height: 250px;
-}
-.container-foto {
-  display: flex;
-  gap: 20px;
-  padding: 20px;
-  align-items: flex-start; /* untuk sejajar vertikal atas */
-}
-.kiri {
-  flex: 2;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  max-width: 800px; /* Added max-width for better readability */
 }
 
-.foto-atas {
-  display: flex;
-  gap: 10px;
-}
-
-.foto-atas img {
-  width: 50%;
-  object-fit: cover;
-  height: auto;
-  border-radius: 6px;
-}
-
-.foto-bawah-bar .foto-kiri {
-  width: 100%;
-  height: 56vh;
-  object-fit: cover;
-  border-radius: 6px;
-}
-
-.kanan {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.kanan img {
-  width: 60vw;
-  object-fit: cover;
-  height: 50vh;
-  border-radius: 6px;
-}
 .testimonial-item {
   min-width: 100%;
   flex-shrink: 0;
-  padding: 20px;
-  background-color: #f9f9f9;
+  padding: 30px;
+  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -677,12 +648,12 @@ header {
   margin-bottom: 10px;
   max-width: 700px;
   font-size: 1.1em;
-  color: var(--dark-gray);
+  color: var(--white); /* Changed to white for visibility on dark bg */
 }
 
 .testimonial-author {
   font-weight: bold;
-  color: var(--primary-color);
+  color: var(--light-purple); /* Changed for better contrast */
 }
 
 .slider-nav {
@@ -697,7 +668,7 @@ header {
   background: none;
   border: none;
   font-size: 2em;
-  color: var(--primary-color);
+  color: var(--white);
   cursor: pointer;
   padding: 5px 10px;
   border-radius: 50%;
@@ -705,7 +676,7 @@ header {
 }
 
 .slider-nav button:hover {
-  background-color: var(--secondary-color);
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .pagination-dots {
@@ -716,73 +687,87 @@ header {
 .pagination-dot {
   width: 10px;
   height: 10px;
-  background-color: #ccc;
+  background-color: rgba(255, 255, 255, 0.5);
   border-radius: 50%;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .pagination-dot.active {
-  background-color: var(--primary-color);
+  background-color: var(--white);
 }
 
-/* Menargetkan HANYA section dengan class .testimonials-section */
-.testimonials-section {
-  /* Ganti 'url-gambar-anda.jpg' dengan path ke gambar yang Anda inginkan */
-  /* Anda bisa menggunakan gambar kertas robek yang kita bahas sebelumnya */
-  background-image: url("../assets/img/bg-paper2.webp");
-
-  /* Properti tambahan untuk memastikan background terlihat bagus */
-  background-size: cover; /* Membuat gambar menutupi seluruh area section */
-  background-position: center; /* Memosisikan gambar di tengah */
-  background-repeat: no-repeat; /* Mencegah gambar berulang jika ukurannya kecil */
-
-  /* Pastikan teks tetap terbaca di atas background */
-  padding: 250px 0; /* Memberi jarak di dalam section */
-}
-
-/* Gaya untuk item testimoni agar memiliki latar belakang transparan */
-.testimonial-item {
-  background-color: rgba(0, 0, 0, 0.4); /* Latar belakang hitam transparan */
-  padding: 20px;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-/* About & FAQ Section  */
+/* ================================================
+   09. About & FAQ Section
+   ================================================ */
 .about-faq-section {
   background-color: var(--secondary-color);
   padding: 60px 0;
 }
 
-.about-faq-section .container {
-  display: flex;
-  flex-wrap: wrap;
+.about-faq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 40px;
-  justify-content: space-between;
+  align-items: flex-start;
 }
 
-.about-moemtaz,
-.faq-section {
-  flex: 1;
-  min-width: 300px;
+.about-card,
+.faq-card {
   background-color: var(--white);
   padding: 30px;
   border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  height: 100%;
 }
 
-.about-moemtaz h3,
-.faq-section h3 {
-  color: var(--primary-color);
+.about-card h3,
+.faq-card h3 {
+  text-align: left;
+  font-size: 1.8em;
   margin-bottom: 25px;
+}
+
+#story-heading {
+  position: relative;
+  text-align: left;
+  border-right: 2px solid var(--primary-color);
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typing 2s steps(40, end), blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: var(--primary-color); }
+}
+
+.story-year {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  margin-bottom: 15px;
+}
+
+.story-year.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.story-year h4 {
+  color: var(--primary-color);
+  margin-bottom: 5px;
   text-align: left;
 }
 
-.about-moemtaz p {
-  font-size: 1em;
-  line-height: 1.8;
+.story-year p {
   color: var(--dark-gray);
+  line-height: 1.6;
 }
 
 .faq-item {
@@ -832,16 +817,16 @@ header {
 }
 
 .faq-answer.open {
-  max-height: 200px;
-  padding: 10px 10px 0 10px;
+  padding: 5px 5px 0 5px;
 }
 
-/* Footer  */
+/* ================================================
+   10. Footer
+   ================================================ */
 footer {
   background-color: #333;
   color: var(--white);
   padding: 40px 0 20px;
-  text-align: center;
 }
 
 .footer-content {
@@ -858,12 +843,12 @@ footer {
 }
 
 .contact-info {
-  text-align: center;
+  text-align: left;
 }
 
 .contact-info h4 {
   color: var(--white);
-  text-align: center;
+  text-align: left;
   margin-bottom: 15px;
 }
 
@@ -875,6 +860,7 @@ footer {
   color: var(--light-purple);
   display: flex;
   align-items: center;
+  justify-content: flex-start;
 }
 
 .contact-info a i {
@@ -891,9 +877,14 @@ footer {
   padding-top: 20px;
   border-top: 1px solid #555;
   font-size: 0.9em;
+  text-align: center;
 }
 
-/* Media Queries for Responsiveness  */
+/* ================================================
+   11. Responsive Media Queries
+   ================================================ */
+
+/* ----- Tablet & Larger Phones (<= 992px) ----- */
 @media (max-width: 992px) {
   .hero-content {
     flex-direction: column;
@@ -908,23 +899,12 @@ footer {
   .video-container {
     padding-bottom: 56.25%;
   }
-
-  .about-faq-section .container {
-    flex-direction: column;
-    align-items: center;
+  .about-faq-grid {
+    grid-template-columns: 1fr;
   }
-  .about-moemtaz,
-  .faq-section {
-    min-width: unset;
-    width: 100%;
-  }
-
   .footer-content {
     flex-direction: column;
     align-items: center;
-    text-align: center;
-  }
-  .contact-info {
     text-align: center;
   }
   .contact-info a {
@@ -932,25 +912,32 @@ footer {
   }
 }
 
+/* ----- Smaller Tablets & Phones (<= 768px) ----- */
 @media (max-width: 768px) {
-  header .site-logo {
-    padding: 0 6px;
-    margin-left: -40px;
+  header {
+    padding: 20px;
+    flex-direction: column;
+    gap: 15px;
   }
-  .promo-nav {
-    font-size: 12px;
-    padding: 3px 5px;
-    margin-left: 60px;
-  }
+  
   .hero-section {
     padding: 30px 0;
   }
+
   .copywriting-overlay {
+    font-size: 1.5em;
+    padding: 15px;
+  }
+   .copywriting-overlay {
     font-size: 1.5em;
     padding: 15px;
   }
   .value-prop h2 {
     font-size: 1.8em;
+  }
+  .promo-background {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
   }
   .final-price {
     font-size: 4.5rem;
@@ -963,10 +950,6 @@ footer {
   }
   .promo-banner {
     font-size: 1.2rem;
-  }
-  .promo-background {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
   }
   .trust-badges .container {
     gap: 20px;
@@ -1006,69 +989,139 @@ footer {
     width: 100%;
     left: 40px;
   }
+
+  .trust-badges .container {
+    gap: 20px;
+  }
+  .trust-logo {
+    max-width: 100px;
+  }
+  
+  .container-cta {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
+  .cta-text h2 {
+    font-size: 2rem;
+  }
+  .cta-bubbles {
+    width: 100%;
+    align-items: center;
+  }
+  .bubble-1, .bubble-2 {
+    align-self: center;
+    width: 80%;
+  }
+
+  .promo-skincare h3 {
+    font-size: 2em;
+  }
+
   .container-foto {
     flex-direction: column;
   }
-
   .foto-atas {
     flex-direction: row;
   }
-
   .foto-atas img {
     width: 50%;
   }
-
   .foto-bawah-bar .foto-kiri,
   .kanan img {
     width: 100%;
   }
+  
+  .testimonials-section {
+    padding: 150px 20px;
+  }
+  .testimonials-section h2 {
+    font-size: 2em;
+  }
+  .testimonial-text {
+    font-size: 1em;
+  }
+
+  .about-faq-section {
+    padding: 40px 20px;
+  }
+  .about-card,
+  .faq-card {
+    padding: 25px;
+  }
+  .about-card h3,
+  .faq-card h3 {
+    font-size: 1.6em;
+  }
+  .about-faq-grid {
+    gap: 25px;
+  }
+
+  .whatsapp-wrapper {
+    bottom: 15px;
+    right: 15px;
+    gap: 8px;
+  }
+  .whatsapp-float {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+  .whatsapp-wrapper .chat-bubble {
+    font-size: 0.9em;
+    padding: 6px 12px;
+    margin-right: 10px;
+  }
+  .whatsapp-wrapper .chat-bubble::after {
+    right: 18px;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid var(--white);
+    bottom: -6px;
+  }
+
+  .promo-popup-content {
+    padding: 30px;
+  }
+  .promo-popup-content h2 { font-size: 1.8em; }
+  .time-segment {
+    font-size: 1.5em;
+    padding: 8px 12px;
+    min-width: 60px;
+  }
+  .promo-call-to-action {
+    padding: 12px 25px;
+    font-size: 1em;
+  }
+  .siap-memulai-section h2 {
+    font-size: 2rem; /* Ukuran font lebih kecil di mobile */
+  }
+
+  .trust-logo {
+    max-width: 100px;
+  }
 }
 
+/* ----- Standard Mobile Phones (<= 480px) ----- */
 @media (max-width: 480px) {
   .container {
     padding: 15px;
   }
+  header {
+    padding: 15px;
+  }
+
   .copywriting-overlay {
     font-size: 1.2em;
     padding: 10px;
   }
-  .value-prop h2 {
-    font-size: 1.5em;
-  }
-  .promo-section {
-    height: 80vh;
-  }
-  .final-price {
-    font-size: 3.5rem;
-  }
-  .original-price {
-    font-size: 1.5rem;
-  }
-  .savings-text {
-    font-size: 0.9rem;
-  }
-  .promo-section {
-    height: 85vh;
-  }
-  .final-price {
-    font-size: 3.5rem;
-  }
-  .original-price {
-    font-size: 1.5rem;
+
+  .promo-skincare h3 {
+    font-size: 1.8em;
   }
 
-  /* Sesuaikan jarak untuk mobile */
-  .promo-title {
-    margin-bottom: 30px;
-  }
-  .price-info {
-    margin-bottom: 30px;
-  }
-
-  /* Pengaturan CTA sebelumnya bisa dihapus atau disederhanakan */
-  .promo-cta {
-    font-size: 0.9rem;
-    padding: 10px 15px;
+  .testimonials-section {
+    padding: 100px 15px;
   }
   .testimonials-section h2 {
     font-size: 1.8em;
@@ -1077,11 +1130,35 @@ footer {
     width: 80px;
     height: 80px;
   }
+  
+  .about-faq-section {
+    padding: 30px 15px;
+  }
+  .about-card,
+  .faq-card {
+    padding: 20px;
+  }
+
   .faq-question {
     font-size: 1em;
     padding: 8px 0;
   }
   .faq-answer {
+    font-size: 0.9em;
+  }
+
+  .promo-popup-content {
+    padding: 20px;
+  }
+  .promo-popup-content h2 { font-size: 1.5em; }
+  .countdown-timer { gap: 10px; }
+  .time-segment {
+    font-size: 1.2em;
+    padding: 6px 10px;
+    min-width: 50px;
+  }
+  .promo-call-to-action {
+    padding: 10px 20px;
     font-size: 0.9em;
   }
 }
