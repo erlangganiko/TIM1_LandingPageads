@@ -259,9 +259,15 @@ h4 {
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 /* ================================================
@@ -426,7 +432,6 @@ header {
   filter: grayscale(20%); /* Sedikit efek grayscale agar lebih elegan */
 }
 
-
 /* ================================================
    06. Trust Badges Section
    ================================================ */
@@ -557,7 +562,6 @@ header {
   border-radius: 5px;
 }
 
-
 /* ================================================
    08. Testimonials Section
    ================================================ */
@@ -595,8 +599,12 @@ header {
 }
 
 @keyframes shine {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 
 .testimonials-slider {
@@ -734,17 +742,26 @@ header {
   border-right: 2px solid var(--primary-color);
   white-space: nowrap;
   overflow: hidden;
-  animation: typing 2s steps(40, end), blink-caret .75s step-end infinite;
+  animation: typing 2s steps(40, end), blink-caret 0.75s step-end infinite;
 }
 
 @keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
 
 @keyframes blink-caret {
-  from, to { border-color: transparent; }
-  50% { border-color: var(--primary-color); }
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--primary-color);
+  }
 }
 
 .story-year {
@@ -919,7 +936,7 @@ footer {
     flex-direction: column;
     gap: 15px;
   }
-  
+
   .hero-section {
     padding: 30px 0;
   }
@@ -928,7 +945,7 @@ footer {
     font-size: 1.5em;
     padding: 15px;
   }
-   .copywriting-overlay {
+  .copywriting-overlay {
     font-size: 1.5em;
     padding: 15px;
   }
@@ -996,7 +1013,7 @@ footer {
   .trust-logo {
     max-width: 100px;
   }
-  
+
   .container-cta {
     flex-direction: column;
     text-align: center;
@@ -1009,7 +1026,8 @@ footer {
     width: 100%;
     align-items: center;
   }
-  .bubble-1, .bubble-2 {
+  .bubble-1,
+  .bubble-2 {
     align-self: center;
     width: 80%;
   }
@@ -1031,7 +1049,7 @@ footer {
   .kanan img {
     width: 100%;
   }
-  
+
   .testimonials-section {
     padding: 150px 20px;
   }
@@ -1083,7 +1101,9 @@ footer {
   .promo-popup-content {
     padding: 30px;
   }
-  .promo-popup-content h2 { font-size: 1.8em; }
+  .promo-popup-content h2 {
+    font-size: 1.8em;
+  }
   .time-segment {
     font-size: 1.5em;
     padding: 8px 12px;
@@ -1121,7 +1141,7 @@ footer {
   }
 
   .testimonials-section {
-    padding: 100px 15px;
+    padding: 200px 15px;
   }
   .testimonials-section h2 {
     font-size: 1.8em;
@@ -1130,7 +1150,7 @@ footer {
     width: 80px;
     height: 80px;
   }
-  
+
   .about-faq-section {
     padding: 30px 15px;
   }
@@ -1150,8 +1170,12 @@ footer {
   .promo-popup-content {
     padding: 20px;
   }
-  .promo-popup-content h2 { font-size: 1.5em; }
-  .countdown-timer { gap: 10px; }
+  .promo-popup-content h2 {
+    font-size: 1.5em;
+  }
+  .countdown-timer {
+    gap: 10px;
+  }
   .time-segment {
     font-size: 1.2em;
     padding: 6px 10px;
