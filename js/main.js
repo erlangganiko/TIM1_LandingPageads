@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // 🔐 Nomor WA dalam base64
-    const encoded = "MDgxMjIwODY5NjAz"; // base64 encoding of 081220869603
+    const encoded = "MDg5NTM1MjQ0NDg4MQ=="; // base64 encoding of 081220869603
     const phone = atob(encoded);
 
     // --- Fungsionalitas Tombol WhatsApp ---
@@ -258,4 +258,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
         typeWriter();
     }
+
+    const promoCta = document.querySelector(".promo-cta");
+  if (promoCta) {
+    promoCta.addEventListener("click", () => {
+      const encoded = "MDg5NTM1MjQ0NDg4MQ=="; // Nomor WA dalam base64
+      const phone = atob(encoded);
+      const message = "Halo, saya siap membuat produk skincare impian saya sekarang juga!";
+      
+      const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, "_blank");
+    });
+  }
 });
